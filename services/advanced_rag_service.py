@@ -37,8 +37,8 @@ class AdvancedRAGService:
     """
 
     def __init__(self,
-                 embedding_model: str = "BAAI/bge-large-en-v1.5",
-                 reranker_model: str = "BAAI/bge-reranker-large",
+                 embedding_model: str = "all-MiniLM-L6-v2",
+                 reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
                  device: str | None = None):
                 #  embedding_model: str = "all-MiniLM-L6-v2",
                 #  reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
