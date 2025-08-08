@@ -37,8 +37,8 @@ class AdvancedRAGService:
     """
 
     def __init__(self,
-                 embedding_model: str = "all-MiniLM-L6-v2",
-                 reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
+                 embedding_model: str = "sentence-transformers/all-MiniLM-L3-v2",
+                 reranker_model: str = "cross-encoder/stsb-TinyBERT-L-2",
                  device: str | None = None):
                 #  embedding_model: str = "all-MiniLM-L6-v2",
                 #  reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
