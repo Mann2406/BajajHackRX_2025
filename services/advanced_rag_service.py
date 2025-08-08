@@ -50,13 +50,13 @@ class AdvancedRAGService:
             requested_device = device or os.getenv("RAG_DEVICE")
             if requested_device:
                 requested_device = requested_device.lower().strip()
-            if requested_device == "cuda" and not torch.cuda.is_available():
+            if requested_device == "cpu" and not torch.cuda.is_available():
                 logger.warning("CUDA requested but not available. Falling back to CPU.")
                 requested_device = "cpu"
-            if requested_device not in {None, "cuda", "cpu"}:
+            if requested_device not in {None, "cpu", "cpu"}:
                 logger.warning(f"Unknown device '{requested_device}', falling back to auto-detect.")
                 requested_device = None
-            self.device = requested_device or ("cuda" if torch.cuda.is_available() else "cpu")
+            self.device = requested_device or ("cpu" if torch.cuda.is_available() else "cpu")
             logger.info(f"Using device: {self.device}")
 
             self.embedding_model_name = embedding_model
@@ -367,7 +367,7 @@ class AdvancedRAGService:
         # Build FAISS index with optional GPU acceleration
         try:
             faiss.normalize_L2(embeddings)
-            if self.device == "cuda" and hasattr(faiss, "StandardGpuResources"):
+            if self.device == "cpu" and hasattr(faiss, "StandardGpuResources"):
                 num_gpus = 0
                 try:
                     num_gpus = faiss.get_num_gpus()
